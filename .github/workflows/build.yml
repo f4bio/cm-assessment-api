@@ -1,0 +1,25 @@
+# Workflow to build and deploy a SvelteKit website to GitHub Pages
+name: Build & deploy api
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["main", "develop"]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - run: npm ci
+      - run: npm run build
+      - run: npm test
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "todo!" && exit 1337
