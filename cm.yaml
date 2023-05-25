@@ -1,0 +1,126 @@
+openapi: 3.0.3
+info:
+  title: cm assessment defs
+  description: cm assessment defs
+  version: 1.0.0
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /user:
+    get:
+      parameters:
+        - name: id
+          in: query
+          required: true
+          description: The user ID
+          schema:
+            type: string
+      operationId: User_GetUser
+      tags:
+        - User
+      summary: Get specific user
+      description: Load user with corresponding id.
+      responses:
+        '200':
+          description: User found
+        '401':
+          description: Missing authorization for loading the user
+        '403':
+          description: Authorized but forbidden to load the user. You have the wrong API permissions.
+    post:
+      operationId: User_PostUser
+      tags:
+        - User
+      summary: Create user
+      description: Load user with corresponding id.
+      responses:
+        '200':
+          description: User created
+        '401':
+          description: Missing authorization for loading the user
+        '403':
+          description: Authorized but forbidden to load the user. You have the wrong API permissions.
+      requestBody:
+        x-name: request
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                email:
+                  type: string
+                  description: The email of the new user
+                  nullable: false
+                password:
+                  type: string
+                  description: The password of the new user
+                isAdministrator:
+                  type: boolean
+                  description: Make this user administrator (only if you have the `unrestricted` permission of a server administrator)
+                  nullable: true
+                  default: false
+        required: true
+        x-position: 1
+    put:
+      parameters:
+        - name: id
+          in: query
+          required: true
+          description: The user ID
+          schema:
+            type: string
+      operationId: User_PutUser
+      tags:
+        - User
+      summary: Update user
+      description: Update user with corresponding id.
+      responses:
+        '200':
+          description: User created
+        '401':
+          description: Missing authorization for loading the user
+        '403':
+          description: Authorized but forbidden to load the user. You have the wrong API permissions.
+      requestBody:
+        x-name: request
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                email:
+                  type: string
+                  description: The email of the new user
+                  nullable: false
+                password:
+                  type: string
+                  description: The password of the new user
+                isAdministrator:
+                  type: boolean
+                  description: Make this user administrator (only if you have the `unrestricted` permission of a server administrator)
+                  nullable: true
+                  default: false
+        required: true
+        x-position: 1
+    delete:
+      parameters:
+        - name: id
+          in: query
+          required: true
+          description: The user ID
+          schema:
+            type: string
+      operationId: User_DeleteUser
+      tags:
+        - User
+      summary: Delete specific user
+      description: Load user with corresponding id.
+      responses:
+        '200':
+          description: User found
+        '401':
+          description: Missing authorization for loading the user
+        '403':
+          description: Authorized but forbidden to load the user. You have the wrong API permissions.

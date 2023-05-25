@@ -1,0 +1,11 @@
+{
+  "name": "cm assessment api (express)",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:0-18-bullseye",
+  "portsAttributes": {
+    "9000": {
+      "label": "Hello Remote World",
+      "onAutoForward": "notify"
+    }
+  },
+  "postCreateCommand": "npm install"
+}
